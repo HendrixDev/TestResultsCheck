@@ -1,0 +1,9 @@
+#!/bin/bash
+fail_count=$(grep -Pio 'outcome="Failed"' '$(Build.ArtifactStagingDirectory)/testresults/dotnetapp_results.trx' | wc -l)
+if [[ $fail_count -gt 0 ]] 
+then
+echo One or more unit tests failed
+exit 1
+else
+echo All tests passed
+fi
